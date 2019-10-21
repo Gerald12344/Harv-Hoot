@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Kahoot</title>
+	<link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body>
+	<FORM class='formFilter' id='form1' onSubmit="return false;" NAME="myform" ACTION="" METHOD="GET">
+		<INPUT autocomplete="off"  TYPE="text" NAME="inputbox" placeholder="Filter" id="boxx">
+            <INPUT TYPE="submit" class="button" TYPE="button" NAME="button" Value="Submit" onClick="clicked1(this.form)"> 
+         </FORM>
+     <div id='div1'>
+  <h1>Console</h1>
+  </div>
+   </body>
+   <script src="/socket.io/socket.io.js"></script>
+   <script>
+      const sock = io();
+      let filter = ''
+      console.log('hi')
+      sock.on('console', console1);
+      function console1(text){
+        console.log(text)
+        if(text[1] == filter || filter == ''){
+       var para = document.createElement("p");
+       var node = document.createTextNode(text[0]);
+      para.appendChild(node);
+      var element = document.getElementById("div1");
+      element.appendChild(para);
+        }
+      }
+      function clicked1(form){
+       filter = form.inputbox.value
+      }
+   </script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Kahoot</title>
+	<link rel="stylesheet" href="styles/style.css">
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="scripts/client.js"></script>
+</head>
+
+<body>
+  <audio autoplay loop hidden id="lobby-music">
+    <source src="music/lobby.mp3" type="audio/mpeg">
+     <source src="music/lobby.wav" type="audio/wav">
+  </audio>
+	<div id="main-body">
+		<div id="login" style="text-align:center">
+			<h1><strong>Harv</strong>-hoot</h1>
+      
+         <h3 id='pin'>Enter Your game pin</h3>
+         <div id="error-div" class="error">
+         <h4 id="error"></h4>
+         </div>
+         <FORM id='form1' onSubmit="return false;" NAME="myform" ACTION="" METHOD="GET">
+            <INPUT autocomplete="off" class="button" TYPE="text" NAME="inputbox" id="form" placeholder="Enter Game Pin" id="boxx">
+            <INPUT TYPE="submit" class="button" TYPE="button" id='button123' NAME="button" Value="Submit" onClick="clicked1(this.form)"> 
+         </FORM>
+         
+ 
+      </div>
+      <div style="display:none" id="game">
+     <div style='text-align:center'>
+     <h1>Waiting room</h1>
+     <!--   
+     <button class="buttonAll button1">1</button>
+     <button class="buttonAll button2">2</button>
+     <button class="buttonAll button3">3</button>
+     <button class="buttonAll button4">4</button>
+     -->
+     </div>
+     </div>
+     </div>
+     <div style="display:none;text-align:center" id="error-404">
+       <h1>Error 502</h1>
+       </div>
+   </body>
+ 
+
+</html>

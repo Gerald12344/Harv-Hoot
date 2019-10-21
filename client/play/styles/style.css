@@ -1,0 +1,222 @@
+import url('https://fonts.googleapis.com/css?family=Roboto:400&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+html {
+  color:white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.list {
+    list-style-type: none;
+    text-align: center;
+    margin-right: 25px;
+}
+.buttonAll1 {
+  font-family: "Roboto", sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width:100%;
+  height:100%;
+  border: 1px solid #f1f1f1;
+  text-decoration: none;
+  color: #313131;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.buttonAll1:hover {
+  border: 1px solid #5D74EB;
+  background: #5D74EB;
+  color: white;
+}
+.button1:hover {
+  border: 1px solid #313131;
+  background: #313131;
+  color: white;
+}
+.button2:hover {
+  border: 1px solid #313131;
+  background: #313131;
+  color: white;
+}
+.button3:hover {
+  border: 1px solid #313131;
+  background: #313131;
+  color: white;
+}
+.button {
+  -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+  font-family: "Roboto", sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: 1px solid #f1f1f1;
+  border-radius: 3px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  border: 1px solid #313131;
+  background: #313131;
+  color: black;
+}
+
+.ytplayer {
+    bottom: 0;
+    left: 0;
+}
+
+.playing {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+input[type=text] {
+  font-family: "Roboto", sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: 1px solid #f1f1f1;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #313131;
+  font-family: "Roboto", sans-serif;
+}
+html{
+  background-repeat:no-repeat;
+    background-size:cover;
+ 
+
+}
+
+.buttonAll{
+  width:40%;
+  display:inline-block;
+  height:200px;
+  border-radius:5px;
+  text-align:center;
+  font-family: "Roboto", sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: 1px solid #f1f1f1;
+  text-decoration: none;
+}
+@keyframes bgcolor {
+   
+    0% {
+        background-color: #45a3e5
+    }
+
+    30% {
+        background-color: #66bf39
+    }
+
+    60% {
+        background-color: #eb670f
+    }
+
+    90% {
+        background-color: #f35
+    }
+
+    100% {
+        background-color: #864cbf
+    }
+}
+
+body {
+  background-color: #f35;
+    -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+}
+.shake {
+  animation: shake 0.5s; 
+  animation-iteration-count: infinite; 
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.error{
+  display:none;
+   position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#3955E1;
+  color: white;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: -20px;
+  padding-bottom: 30px;
+  height:30px;
+  margin-top:0;
+}
+.formFilter{
+  right:0;
+  position: fixed;
+  text-align: center;
+}
+.button1{
+  position: fixed;
+  top:0;
+  margin-top:15px;
+  margin-left:15px;
+  left:0;
+  background-color:#2176ff;
+}
+.button2{
+  position: fixed;
+  top:0;
+  right:0;
+  background-color:#f73411;
+}
+.button3{
+  position: fixed;
+  bottom:0;
+  left:0;
+  background-color:#0eeb15;
+}
+.button4{
+  position: fixed;
+  bottom:0;
+  right:0;
+  background-color:#ecfc0a;
+}

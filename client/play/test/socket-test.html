@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Kahoot</title>
+	<link rel="stylesheet" href="../styles/style.css">
+	<script src="/socket.io/socket.io.js">
+	</script>
+</head>
+
+<body>
+  <button class="button" onClick="clicked()">CLick me</button>
+  <pre id="text"></pre>
+</body>
+<script type="text/javascript">
+const sock = io();
+var socket = io.connect();
+function clicked(){
+  const socketUrl = 'http://localhost:9000';
+  socket = io(socketUrl, {
+    autoConnect: false,
+  });
+  console.log('here')
+sock.emit('game-creation', 'hi')
+}
+
+sock.on('Questions',question);
+function question(text){
+  console.log('recieved')
+  document.getElementById('text').innerHTML = JSON.stringify(text, undefined, 2);
+}
+
+</script>
+
+</html>
