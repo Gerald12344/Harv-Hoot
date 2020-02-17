@@ -1,44 +1,73 @@
 const sock = io();
 var socket = io.connect();
+let currentId
 const socketUrl = 'http://localhost:9000';
 socket = io(socketUrl, {
-    autoConnect: false,
-  });
+  autoConnect: false,
+});
 let img1 = 'https://ctl.s6img.com/society6/img/gvwozL3NbYrBa59etDlFbEoxO3c/w_700/prints/~artwork/s6-original-art-uploads/society6/uploads/misc/e97ccdf88fe24bb4b99a37fb96bcd415/~~/gamer-collection-do-not-disturb-gamer-at-work-ps4-white-controller-prints.jpg'
 let current = '1'
-let change1 = function(id){
+let change1 = function (id) {
+  window.history.pushState({ "html": response.html, "pageTitle": response.pageTitle }, "", '?id=' + id);
   document.getElementById('photos').style.display = 'none'
   document.getElementById('more-info').style.display = 'none'
   document.getElementById('loading').style.display = 'block'
+  currentId = id
   sock.emit('homepage-query(send)specific', id)
 
 }
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    vars[key] = value;
+  });
+  return vars;
+}
 
-let add = function(text,one){
+function getUrlParam(parameter, defaultvalue) {
+  var urlparameter = defaultvalue;
+  if (window.location.href.indexOf(parameter) > -1) {
+    urlparameter = getUrlVars()[parameter];
+  }
+  return urlparameter;
+}
+
+let url = (getUrlParam('id', 'empty'));
+console.log(url)
+if (!(url === 'empty')) {
+  if (url.length == 24) {
+    change1(url)
+  }
+}
+
+let add = function (text, one) {
   let plays = text.Plays
-  let date = text.Date
+  let data = new Date(text.Date * 1000)
+  data = data.toUTCString()
+  data = data.split(' ')
+  let date = `${data[0]} ${data[1]} ${data[2]}`
   let id = text._id
   let img = text.PhotoId
   let title1 = text.Title
-  if(!img){ 
+  if (!img) {
     img = 'https://icon-library.net/images/red-cross-icon/red-cross-icon-12.jpg'
   }
   let div = document.getElementById(one)
   let newitem = document.createElement("div");
   newitem.className = 'card'
-  let newdiv = document.createElement("div"); 
+  let newdiv = document.createElement("div");
   newdiv.style.background = `url(${img})`
   newdiv.className = 'image123'
   newdiv.style.backgroundSize = 'cover'
   let titletextnode = document.createTextNode(title1)
   let title = document.createElement('h1')
   title.appendChild(titletextnode)
-  let desctextnode = document.createTextNode(`Created ${date} - Plays ${plays}`)
+  let desctextnode = document.createTextNode(`Created: ${date} - Plays ${plays}`)
   let description = document.createElement('p')
   description.appendChild(desctextnode)
   let button = document.createElement('button')
   let buttontext = document.createTextNode('Play')
-  button.setAttribute( "onClick", `change1('${id}');` );
+  button.setAttribute("onClick", `change1('${id}');`);
   button.appendChild(buttontext)
   newitem.appendChild(newdiv)
   newitem.appendChild(title)
@@ -46,64 +75,70 @@ let add = function(text,one){
   newitem.appendChild(button)
   div.appendChild(newitem)
 }
-function change(value,notvalue1,notvalue2){
-  document.getElementById(value).className = 'active'
+function change(value, notvalue1, notvalue2, notvalue3) {
   document.getElementById(notvalue1).className = ''
   document.getElementById(notvalue2).className = ''
+  document.getElementById(notvalue3).className = ''
+  if (!(value === 4)) {
+    document.getElementById(value).className = 'active'
+  }
   document.getElementById(`div-${value}`).style.display = 'block'
   document.getElementById(`div-${notvalue1}`).style.display = 'none'
   document.getElementById(`div-${notvalue2}`).style.display = 'none'
-  if(current === value && value === 1){
+  document.getElementById(`div-${notvalue3}`).style.display = 'none'
+  if (current === value && value === 1) {
     document.getElementById('forms').style.display = 'block'
     document.getElementById('error').style.display = 'none'
     document.getElementById('searchresponse').style.display = 'none'
     document.getElementById('front-page').style.display = 'block'
     document.getElementById('more-info').style.display = 'none'
     document.getElementById('photos').style.display = 'block'
-  document.getElementById('loading').style.display = 'none'
+    document.getElementById('loading').style.display = 'none'
   }
   current = value
 }
-let data = function(text,location){
-  for(let i=0;i<text.length;i++){
-    add(text[i],'item')
+let data = function (text, location) {
+  document.getElementById('loading').style.display = 'none'
+  document.getElementById('front-page').style.display = "block"
+  for (let i = 0; i < text.length; i++) {
+    add(text[i], 'item')
   }
 }
 
 
-let data2 = function(text,location){
-  for(let i=0;i<text.length;i++){
-    add(text[i],'item1')
+let data2 = function (text, location) {
+  for (let i = 0; i < text.length; i++) {
+    add(text[i], 'item1')
   }
-} 
+}
 
-let update = function(text){
+let update = function (text) {
   text = text[0]
-  document.getElementById('play').setAttribute( "onClick", `play('${text._id}');` );
+  document.getElementById('play').setAttribute("onClick", `play('${text._id}');`);
   document.getElementById('more-info').style.display = 'flex'
   document.getElementById('loading').style.display = 'none'
-  let photo =  document.getElementById('image1')
+  let photo = document.getElementById('image1')
   photo.style.background = `url(${text.PhotoId})`
   photo.style.backgroundSize = 'cover'
   document.getElementById('more').innerHTML = text.Title
   document.getElementById('description').innerHTML = text.Desciption
   document.getElementById('plays').innerHTML = `Plays: ${text.Plays}`
-  let data = new Date(text.Date*1000)
+  let data = new Date(text.Date * 1000)
   data = data.toUTCString()
   data = data.split(' ')
   document.getElementById('date').innerHTML = `Created: ${data[0]} ${data[1]} ${data[2]} ${data[3]}`
   let firstDiv = document.getElementById('questions-cards')
   while (firstDiv.hasChildNodes()) {
     firstDiv.removeChild(firstDiv.lastChild);
-}
-  for(let k=0;k<text.Questions.length;k++){
-    addNewCard(text.Questions[k],text.Answers[k])
+  }
+  for (let k = 0; k < text.Questions.length; k++) {
+    addNewCard(text.Questions[k], text.Answers[k])
   }
 }
 
 
 
-function addNewCard(question, answer){
+function addNewCard(question, answer) {
   let firstDiv = document.getElementById('questions-cards')
   let div = document.createElement('div')
   let question1 = document.createElement('p')
@@ -119,26 +154,26 @@ function addNewCard(question, answer){
 }
 
 
-function move(direction){
+function move(direction) {
   let scroll = document.getElementById('item')
-  if(direction){
-      let i = 0
-      let interval = setInterval(function increment(){document.getElementById('item').scrollLeft -= 1;i++;if(i>275){clearInterval(interval)}},1)
-
-  }else{
+  if (direction) {
     let i = 0
-      let interval = setInterval(function increment(){document.getElementById('item').scrollLeft += 1;i++;if(i>275){clearInterval(interval)}},1)
+    let interval = setInterval(function increment() { document.getElementById('item').scrollLeft -= 1; i++; if (i > 275) { clearInterval(interval) } }, 1)
+
+  } else {
+    let i = 0
+    let interval = setInterval(function increment() { document.getElementById('item').scrollLeft += 1; i++; if (i > 275) { clearInterval(interval) } }, 1)
   }
 }
 
-function clicked1(form){
+function clicked1(form) {
   console.log(form.inputbox.value)
   document.getElementById('forms').style.display = 'none'
   document.getElementById('loading').style.display = 'block'
-  sock.emit('searchbar',form.inputbox.value)
+  sock.emit('searchbar', form.inputbox.value)
 }
 
-function serachRecieve(data){
+function serachRecieve(data) {
   let firstDiv = document.getElementById('response')
   while (firstDiv.hasChildNodes()) {
     firstDiv.removeChild(firstDiv.lastChild);
@@ -146,21 +181,24 @@ function serachRecieve(data){
   document.getElementById('boxx').value = ''
   document.getElementById('loading').style.display = 'none'
   console.log(data)
-  if(data.length === 0){
+  if (data.length === 0) {
     document.getElementById('error').style.display = 'block'
     document.getElementById('searchresponse').style.display = 'block'
-    document.getElementById('error').innerHTML  = 'Nothing found'
-  }else{
-    for(let i=0;i<data.length;i++){
+    document.getElementById('error').innerHTML = 'Nothing found'
+  } else {
+    for (let i = 0; i < data.length; i++) {
       document.getElementById('error').style.display = 'none'
       document.getElementById('searchresponse').style.display = 'block'
-      add(data[i],'response')
+      add(data[i], 'response')
     }
   }
 }
 
-function play(id){
-  
+function play() {
+  let jsongame = { Id: `${currentId}` }
+  window.localStorage.setItem('game-id', JSON.stringify(jsongame));
+  var win = window.open('/host/play', '_blank');
+  win.focus();
 }
 
 
@@ -169,4 +207,4 @@ sock.emit('homepage-query(send)', 'request')
 sock.on('homepage-query(recieve)', data);
 sock.on('homepage-query(recieve)Specific', update);
 sock.on('feautured-list', data2);
-sock.on('search-recieve',serachRecieve)
+sock.on('search-recieve', serachRecieve)

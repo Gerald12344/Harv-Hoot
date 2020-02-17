@@ -1,0 +1,66 @@
+.pin-container{
+    top:0;
+    text-align:center;
+    font-size:25px;
+    width: 100%;
+    box-shadow: 0px 3px 20px 0.5px;
+    margin:0;
+    overflow: hidden;
+    height:125px;
+    z-index:90;
+    background-color:white;
+    position:fixed;
+}
+@media only screen and (max-width: 450px) {
+    .pin-container{
+        height:175px;
+    }
+    .margin{
+    margin-top:200px;
+   }
+  }
+@media only screen and (min-width: 450px) {
+        .margin{
+        margin-top:175px;
+        }
+}
+
+
+
+.players{
+    width:100%;
+    height: 80vh;
+    z-index:10;
+    flex-wrap: wrap;
+    display:flex;
+}
+.text-players{
+    display:inline-block;
+    width:85vw;
+    margin-left: 7.5vw;
+    margin-top:175px;
+}
+.text-players div{
+  max-width: 250px;
+  min-width:250px;
+  position: relative;
+  text-align: center;
+  font-family: arial;
+  display:inline-block;
+  padding:0;
+  margin-bottom:30px;
+  outline: none;
+  flex:1;
+  margin:10px;
+  padding:10px;
+  height: 60px;
+  border-radius:5px;
+}
+body{
+    background-color:rgba(46, 204, 113, 0.5);
+}
+.text-players h3:hover{
+    text-decoration: line-through;
+    cursor: pointer;
+    user-select: none;
+}

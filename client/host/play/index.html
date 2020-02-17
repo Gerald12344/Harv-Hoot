@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    </meta>
+
+</head>
+
+<body>
+    <div style="text-align:center" id="loading">
+        <img style="display:inline-block;width:50px;height:50px;margin-top:100px"
+            src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ab79a231234507.564a1d23814ef.gif">
+        <br>
+        <h1 style="display:inline-block;">Loading</h1>
+    </div>
+    <div style="display:none;z-index:1000;" id="waiting-Page">
+        <div id="pin-container" class="pin-container">
+            <h1 id="pin"></h1>
+        </div>
+        <div class="players" style="z-index: -1;">
+            <div id="players123" class="text-players">
+                <button id="play1234" onClick="play()" class="new-buttons margin" style="cursor: not-allowed;right:0;text-align:center;z-index:100;top:0;position:fixed;margin-right:20px;">Start</button>
+                <h1 id="members" class="margin" style="left:0;text-align:center;z-index:100;top:0;position:fixed;margin-left:20px;">Members: 0</h1>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+            <p>&copy;Harvey Randall</p>
+        </div>
+</body>
+
+</html>
