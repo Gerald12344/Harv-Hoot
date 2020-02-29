@@ -5,14 +5,19 @@
 	<title>Kahoot</title>
 	<link rel="stylesheet" href="../styles/style.css">
 </head>
-
+<style>
+   body{
+      margin-top:0;
+      font-size:20px;
+   }
+</style>
 <body>
 	<FORM class='formFilter' id='form1' onSubmit="return false;" NAME="myform" ACTION="" METHOD="GET">
 		<INPUT autocomplete="off"  TYPE="text" NAME="inputbox" placeholder="Filter" id="boxx">
             <INPUT TYPE="submit" class="button" TYPE="button" NAME="button" Value="Submit" onClick="clicked1(this.form)"> 
          </FORM>
      <div id='div1'>
-  <h1>Console</h1>
+  <h3>Console</h3>
   </div>
    </body>
    <script src="/socket.io/socket.io.js"></script>
