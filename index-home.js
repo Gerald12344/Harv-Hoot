@@ -1,45 +1,21 @@
-const https = require('https');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const app = express();
-const Ddos = require('ddos');
-const fs = require('fs');
-var httpolyglot = require('httpolyglot');
 
 let login = require("./server/login/login.js");
 let game = require("./server/game/game.js");
-let admin = require("./server/admin/admin.js");
 let database = require("./server/game/database.js");
-
+let admin = require("./server/admin/admin.js");
 //--------------------------------------
-let ddos = new Ddos({burst:10, limit:15});
-
-app.use(ddos.express);
-
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/harvhoot.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/harvhoot.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/harvhoot.com/chain.pem', 'utf8');
 
 
-const credentials = {
-        key: privateKey,
-        cert: certificate,
-        ca: ca
-};
-const server = httpolyglot.createServer(credentials, app);
-app.use(function(req, res, next) {
-    if (!req.secure ) {
-            res.redirect (301, 'https://harvhoot.com');
-    }
-    next();
-})
-
-//const server = http.createServer( app);
 app.use(express.static(`client`));
 console.log('started');
+const server = http.createServer(app);
 const io = socketio(server);
 console.log('running')
+
 
 io.on('connection', (sock) => {
   //conection
@@ -59,13 +35,13 @@ io.on('connection', (sock) => {
   sock.on('homepage-query(send)', (data) => {
     database.homepageQuery(sock)
   });
- //--------------------------------------
+  //--------------------------------------
 
 
   //game login
   sock.on('kicked', (data) => {
     console.log(`kicked ${data.id} from ${data.pin}`)
-    io.to(data.id).emit('removed',`${data.text}`)
+    io.to(data.id).emit('removed', `${data.text}`)
 
   })
 
@@ -98,7 +74,7 @@ io.on('connection', (sock) => {
   sock.on('game-creation', (mongoId) => {
     let state = game.newGame(sock, mongoId, io);
     console.log(state)
-  sock.emit('new-pin-host', state);
+    sock.emit('new-pin-host', state);
   });
 
   //start Game currently does nothing
@@ -113,19 +89,18 @@ io.on('connection', (sock) => {
     io.in(gameAnswer[1]).emit('answer', gameAnswer[0]);
   });
 
+  //Handeling temperature and fan controlls
+  sock.on('Admin-Panel-Login', (data) => {
+    admin.login(sock, io, data.username2, data.password)
+  })
+  sock.on('Admin-Panel-Data', (data) => {
+    admin.data(sock, io, data)
+  })
 
   sock.on('answer', (state) => {
     let answered = game.Answered(sock.id, sock, io, state)
     io.to(answered[1]).emit('answerScore', answered);
   });
-
-  //Handeling temperature and fan controlls
-  sock.on('Admin-Panel-Login', (data) => {
-    admin.login(sock,io,data.username,data.password)
-  })
-  sock.on('Admin-Panel-Data', (data) => {
-    admin.data(sock,io,device,value)
-  })
 
   //Disconnection-------------------------------
   sock.on('disconnect', function () {
@@ -139,4 +114,3 @@ server.on('error', (err) => {
 server.listen(8080, () => {
   console.log('RPS started on 8080');
 });
-
