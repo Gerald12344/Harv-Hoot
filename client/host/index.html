@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Harvhoot - Home Page</title>
+    <meta name="title" content="Harv-Hoot">
+<meta name="description" content="A simple user-friendly quiz app, that allows you to play multiplayer quiz's with friends. There is a quiz for every time, celebration or family gathering.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.harvhoot.com/">
+<meta property="og:title" content="Harv-Hoot">
+<meta property="og:description" content="A simple user-friendly quiz app, that allows you to play multiplayer quiz's with friends. There is a quiz for every time, celebration or family gathering.">
+<meta property="og:image" content="https://harvhoot.com/play/logo.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://www.harvhoot.com/">
+<meta property="twitter:title" content="Harv-Hoot">
+<meta property="twitter:description" content="A simple user-friendly quiz app, that allows you to play multiplayer quiz's with friends. There is a quiz for every time, celebration or family gathering.">
+<meta property="twitter:image" content="https://harvhoot.com/play/logo.png">
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="/socket.io/socket.io.js"></script>
+<script type="application/ld+json">
+{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "logo": "https://harvhoot.com/play/logo.png",
+        "url": "https://harvhoot.com"
+}
+</script>
+<script type="application/ld+json">    
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.harvhoot.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://harvhoot.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+ </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
+</head>
+
+<body>
+<a href="https://harvhoot.com/host/play/" style="display:none">Host Page></a>
+<a href="https://harvhoot.com/play/" style="display:none">Join Page></a>
+    <div class="navbar">
+        <ul>
+            <li>
+                <button id='1' onclick="change(1,2,3)" class="active">Discover</button>
+            </li>
+            <li>
+                <button id='2' onclick="change(2,1,3)">Profile</button>
+            </li>
+            <li>
+                <button id='3' onclick="change(3,1,2)">Settings</button>
+            </li>
+        </ul>
+    </div>
+    <div id="div-1">
+        <div id='front-page' style="display: none;">
+            <div id="photos">
+                <FORM id='form1' class="form" onSubmit="return false;" NAME="myform" ACTION="" METHOD="GET">
+                    <INPUT autocomplete="off" class="serachbar" TYPE="text" NAME="inputbox" placeholder="Search..."
+                        id="boxx">
+                    <INPUT TYPE="submit" class="serachbar" TYPE="button" id='button123' NAME="button" Value="Go"
+                        onClick="clicked1(this.form)">
+                </FORM>
+                <div id='searchresponse' style="display:none;text-align:center">
+                    <h1 id="error"></h1>
+                    <div id="response"></div>
+                </div>
+                <div id="forms">
+                    <h1>Harv-hoots you may like:</h1>
+
+                    <div class="items" id='item'>
+
+                        <a class="prev" onclick="move(true)">❮</a>
+                        <a class="next" onclick="move(false)">❯</a>
+                    </div>
+                    <h1>Featured:</h1>
+
+                    <div class="items" id='item1'>
+
+                        <a class="prev" onclick="move1(true)">❮</a>
+                        <a class="next" onclick="move1(false)">❯</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="text-align:center" id="loading">
+            <img style="display:inline-block;width:50px;height:50px;margin-top:100px"
+                src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ab79a231234507.564a1d23814ef.gif">
+            <br>
+            <h1 style="display:inline-block;">Loading</h1>
+            <div>
+            </div>
+        </div>
+        <div style="display:none;text-align:center;
+          flex-wrap:wrap;align-items: center;justify-content: center;" id="more-info">
+            <div class="container-left" id='lefthand-side'>
+                <div class="image1" id="image1"></div>
+                <h1 id="more"></h1>
+                <div style="display:inline-block;width:60%">
+                    <button id="play" onClick="play()" class="new-buttons" style="float:left;text-align:center">Play</button>
+                    <button class="new-buttons" style="float:right;text-align:center">Like</button>
+                </div>
+                <br>
+                <p id="description"></p>
+                <br>
+                <div style="color:grey;display:inline-block;width:70%">
+                    <p style="float:left;text-align:center" id="plays"></p>
+                    <p style="float:right;text-align:center" id="date"></p>
+                </div>
+            </div>
+            <div class="container-right" id='lefthand-right'>
+                <h1>Questions Overview</h1>
+                <div id="questions-cards" class="questions"></div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none" id='div-2'>
+        <h1>Profile</h1>
+
+    </div>
+    <div style="display:none" id='div-3'>
+        <h1>Settings</h1>
+    </div>
+    <br>
+    <div class="footer">
+        <p>&copy;Harvey Randall</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

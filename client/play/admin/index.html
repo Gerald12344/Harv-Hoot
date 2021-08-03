@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Kahoot</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<style>
+    body {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    form {
+        padding-top: 24vh;
+	text-align:center;
+        margin: 10px;
+    }
+
+    INPUT {
+        color: black;
+        margin: 10px;
+    }
+
+    .inputdiv {
+        display: inline-block;
+        width: 50vw;
+        height: 100px;
+    }
+
+    .slidecontainer {
+        width: 45vw;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 80%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    .sliderflex {
+        width: 49vw;
+    }
+
+    .flexbots {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .background {
+        background-color: rgba(150, 150, 150,0.8);
+        margin: 10px;
+        border-radius: 5px;
+        height: 90%;
+    }
+</style>
+
+<body>
+    <div id="form">
+        <FORM style="text-align:center" id='form1' onSubmit="return false;" NAME="myform" ACTION="" METHOD="GET">
+            <h2 style="text-align:text-align:center;padding-left: 10px;font-size:60px">Login</h2>
+            <INPUT style="margin-left:-100px;color:black" autocomplete="off" TYPE="text" NAME="inputbox" placeholder="username" id="boxx">
+            <br>
+            <INPUT autocomplete="off" TYPE="password" NAME="inputbox2" placeholder="password" style="color:black;" id="boxx2">
+            <INPUT TYPE="submit" class="button" TYPE="button" NAME="button" Value="Submit"
+                onClick="clicked1(this.form)">
+            <h5 id="wrong" style="display:none">Wrong Password or Username</h5>
+        </FORM>
+    </div>
+    <div id="Control-Panel" style="display:none;padding-left: 10px;" class="flexbots">
+        <div class="sliderflex">
+            <h3 style="padding-top: -10px;">Settings</h3>
+            <div class="inputdiv">
+                <h4>Main CPU fan:</h4>
+                <h4 style="display: inline-block" id="MainFanSpeed">0</h4>
+                <input style="display: inline-block" type="range" min="0" max="255" value="0" class="slider"
+                    id="myRange">
+            </div>
+            <br>
+            <div class="inputdiv">
+                <h4>Below CPU fan:</h4>
+                <h4 id="CPUFanSpeed" style="display: inline-block">0</h4>
+                <input style="display: inline-block;" type="range" min="0" max="255" value="0" class="slider"
+                    id="myRange2">
+            </div>
+            <br>
+            <div class="inputdiv">
+                <h4>Room fan:</h4>
+                <h4 id="RoomFanSpeed" style="display: inline-block">0</h4>
+                <input style="display: inline-block;" type="range" min="0" max="255" value="0" class="slider"
+                    id="myRange3">
+            </div>
+            <br>
+            <div class="inputdiv" style="padding-left: 10vw;">
+                <INPUT TYPE="submit" class="button" TYPE="button" NAME="button" Value="Update" onClick="update()">
+            </div>
+            <br>
+        </div>
+        <div class="sliderflex" style="top:0;float:right;padding-left: 0px;">
+            <div class="background">
+                <div style="margin: 10px;">
+                    <h3>Status</h3>
+		    <h4 id="CPUTEMP"></h4>
+                    <div style="display: inline-block;">
+                        <h4>Main Fan: </h4>
+                        <h4 id="MAIN-FAN-STATUS" style="color: red;">False</h4>
+                    </div>
+                    <br>
+                    <div style="display: inline-block;">
+                        <h4>CPU Fan: </h4>
+                        <h4 id="CPU-FAN-STATUS" style="color: red;">False</h4>
+                    </div>
+                    <br>
+                    <div style="display: inline-block;">
+                        <h4>Room Fan: </h4>
+                        <h4 style="color: red;">False</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://harvhoot.com/play/admin/index.js"></script>
+</html>

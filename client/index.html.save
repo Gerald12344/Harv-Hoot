@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Primary Meta Tags -->
+<title>Harv-Hoot</title>
+<meta name="title" content="Harv-Hoot">
+<meta name="description" content="A simple user-friendly quiz app, that allows you to play multiplayer quiz's with friends. There is a quiz for every time, celebration or family gathering.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.harvhoot.com/">
+<meta property="og:title" content="Harv-Hoot">
+<meta property="og:description" content="A simple user-friendly quiz app, that allows you to play multiplayer quiz's with friends. There is a quiz for every time, celebration or family gathering.">
+<meta property="og:image" content="https://harvhoot.com/play/logo.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://www.harvhoot.com/">
+<meta property="twitter:title" content="Harv-Hoot">
+<meta property="twitter:description" content="A simple user-friendly quiz app, that allows you to play multiplayer quiz's with friends. There is a quiz for every time, celebration or family gathering.">
+<meta property="twitter:image" content="https://harvhoot.com/play/logo.png">
+<script type="application/ld+json">
+{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "logo": "https://harvhoot.com/play/logo.png",
+        "url": "https://harvhoot.com"
+}
+</script>
+<script type="application/ld+json">    
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.harvhoot.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://harvhoot.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+ </script>
+</head>
+<body>
+<noscript>
+<h1>Harv-Hoot</h1>
+<a href="https://harvhoot.com/play">Click Here to go to the webpage manually</a>
+<p>If your seeing this someone has gone wrong, make sure Javascript is enbaled as it is required to go to Harv-hoot</p>
+</noscript>
+<script>
+window.location.href = "/play"
+</script>
+</body>
+</html>

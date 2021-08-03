@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/903eacb11b.js" crossorigin="anonymous"></script>
+
+    </meta>
+</head>
+
+<body>
+    <div class="navbar">
+        <ul class="ul3">
+            <li>
+                <button id='2' onclick="change(2,1,3,4)" class="active">Home</button>
+            </li>
+            <li>
+                <button id='1' onclick="change(1,2,3,4)">Discover</button>
+            </li>
+            <li style="float:right">
+                <button id='3' onclick="change(3,1,2,4)">Login
+                    <i class="fas fa-lock fa-1.5x"></i>
+                </button>
+            </li>
+            <li>
+                <button id='4' onclick="change(4,1,2,3)">
+                    <i class="fas fa-plus"></i> Create
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="main" id="div-2">
+        <div id="img-parrallax" style="overflow: hidden;position: relative;z-index:-1;height:auto;max-width:100%;">
+            <div class="background">
+
+                <img id="img" src="https://www.cinema5d.com/wp-content/uploads/2016/10/cinematic-iphone-video_10-tips.jpg" style="display:block;z-index:-1;"></img>
+            </div>
+        </div>
+        <div id="ceneter" class="center">
+            <h1>Harv-hoot</h1>
+        </div>
+        <div class="bottom-arrow">
+            <i style="color:white" class="fa fa-arrow-down fa-3x"></i>
+        </div>
+        <div id="above-triangles">
+            <div class="triangle"></div>
+            <div class="triangle2"></div>
+        </div>
+        <div id="divy" style="background-color:white">
+
+            <h1 style="font-size:50px">Why use Harv-hoot</h1>
+            <div class="flex" style="z-index:90">
+                <div class="flex-inner" id="left">
+                    <i class="fas fa-mobile-alt fa-10x"></i>
+                    <h1>Mobile Friendly</h1>
+                    <p>Built for all device from iphone 4 to samsung tablet</p>
+                </div>
+                <div class="flex-inner" id="middle">
+                    <i class="fas fa-user-friends fa-10x"></i>
+                    <h1>User Friendly</h1>
+                    <p>Our Platform is built for all ages.</p>
+                </div>
+                <div class="flex-inner" id="right">
+                    <i class="fas fa-user-shield fa-10x"></i>
+                    <h1>Secure</h1>
+                    <p>All data sent to our server is fully encrypted with https.</p>
+                </div>
+            </div>
+        </div>
+        <div id="below-triangles">
+            <div class="triangle3"></div>
+            <div class="triangle4"></div>
+        </div>
+        <div id="img-parrallax2" style="overflow: hidden;position: relative;z-index:-1;height:auto;max-width:100%;">
+            <div class="background">
+
+                <img id="img2" src="https://www.cinema5d.com/wp-content/uploads/2016/10/cinematic-iphone-video_10-tips.jpg" style="display:block;z-index:-1;"></img>
+            </div>
+        </div>
+        <div id="above-triangles">
+            <div class="triangle5"></div>
+            <div class="triangle2"></div>
+        </div>
+        <div id="divy" style="background-color:white;">
+
+            <h1 style="font-size:50px">About Harv-hoot</h1>
+
+            <div class="flex" style="z-index:90">
+                <div class="flex-inner" id="middle">
+                    <p>What started out as a simple Georaphy Quiz has envolved into a mulitplayer platform. <br> As the
+                        creater I am very proud of how far the this program has come and how much it has taught me about
+                        modern day coding and network infastruture </p>
+                </div>
+                <div class="flex-inner" id="left">
+                    <i class="fas fa-laptop-code fa-10x"></i>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="footer">
+            <div class="flexfooter" id="footer">
+                <div class="flexfooterOuter">
+                    <img src="https://harvhoot.com/play/logo.png" class="footer-Image">
+                    <p class='ppp'>A simple user-friendly quiz app, that allows you to play multiplayer quiz's with
+                        friends. There is a quiz for every time, celebration or family gathering.</p>
+                </div>
+                <div class="flexfooterOuter">
+                    <h2>Quick Links:</h2>
+                    <div style="padding-left:20%">
+                        <ul class="ul">
+                            <li class="ul"><a href='https://harvhoot.com/play'>Join Game</a></li>
+                            <li class="ul"><a href='https://harvhoot.com/play'>HomePage</a></li>
+                            <li class="ul"><a href='https://harvhoot.com/play'>Host Game</a></li>
+                            <li class="ul"><a href='https://harvhoot.com/play'>Login</a></li>
+                            <li class="ul"><a href='https://harvhoot.com/play'>Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flexfooterOuter">
+                    <h2 style="margin-right: 50px;">Contact Me:</h2>
+                    <div style="float:left">
+                        <i class="fas fa-envelope"></i>
+                        <a href="matio:support@harvhoot.com"
+                            style="color:white;text-decoration: none;font-size:18px;padding-left:7px">support@harvhoot.com</a>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="float:left">
+                        <i class="fas fa-phone-alt"></i>
+                        <a style="padding-left:7px;font-size:18px">Please don't phone me</a>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="display: inline-block;right:10vw;position:absolute" class="here">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div style="display: inline-block;right:15vw;position:absolute" class="here">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div style="display: inline-block;right:20vw;position:absolute" class="here">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div style="display: inline-block;right:25vw;position:absolute" class="here">
+                        <i class="fab fa-github"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="discover" style="display: none" id="div-4">
+
+    </div>
+    <div class="main" style="display: none;padding-top:30px;overflow:hidden" id="div-3">
+        <div class="login-flex">
+            <div class="inner-login-flex">
+                <div class="image">
+                    <img src="https://source.unsplash.com/collection/827743/1600x900"
+                        style="overflow: hidden;position: relative;object-fit: cover;z-index:-1;height:auto;width:60vw;height:100vh">
+                </div>
+            </div>
+            <div class="inner-login-flex">
+                <div id="side-triangles" style="overflow: hidden;padding-right:12vw">
+                    <div style="overflow: hidden;" class="triangle7"></div>
+                    <div style="overflow: hidden;" class="triangle8"></div>
+                </div>
+                <div style="padding-left:15vw">
+                    <h1 style="text-align: justify;">Welcome Back</h1>
+                    <div style="text-align: center;">
+                        <FORM style="text-align: justify" id='form1' onSubmit="return false;" NAME="myform" ACTION=""
+                            METHOD="GET">
+                            <h3 style="text-align:justify;padding-left: 10px;">Login</h3>
+                            <INPUT class="signing" autocomplete="off" TYPE="text" NAME="inputbox" style="color:black;" id="boxx">
+                            <span id="usernames" style="font-size: 20px;padding-left:5px;padding-right:5px;background-color: white;">
+                                Username
+                            </span>
+                            <br>
+                            <br>
+                            <INPUT class="signing" autocomplete="off" TYPE="password" NAME="inputbox2" style="color:black;" id="boxx2">
+                            <span id="passwords" style="font-size: 20px;padding-left:5px;padding-right:5px;background-color: white;">
+                                Password
+                            </span>
+                            <br>
+                            <br>
+                            <INPUT TYPE="submit" class="button" TYPE="button" NAME="button" Value="Sign In"onClick="clicked1(this.form)">
+                            <h5 id="wrong" style="display:none">Wrong Password or Username</h5>
+                        </FORM>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="display: none" id="div-1">
+
+    </div>
+</body>
+<script src="index.js"></script>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script src="/socket.io/socket.io.js">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
+    </script>
+</head>
+
+<body>
+    <div style="display:none" id="question-image">
+        <div class="image-card" id="question-img">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+        <div id="question">
+            <div style="text-align:center;display:inline-block" class="button">
+                <button id="button" class="button111" onClick="submit()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div style="display:none" class="good" id="after-question">
+        <div class="quotes">
+                <img style="display:inline-block;width:100px;height:100px;margin-top:100px"
+                src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ab79a231234507.564a1d23814ef.gif">
+            <br>
+            <h1>You dun Good</h1>
+        </div>
+    </div>
+</body>
+<script>
+    const sock = io();
+    var socket = io.connect();
+    const socketUrl = 'http://localhost:9000';
+    socket = io(socketUrl, {
+        autoConnect: false,
+    });
+    let canvas = document.getElementById('canvas')
+    var img = new Image;
+    let xPosition
+    let yPosition
+
+    img.src = 'https://pngimage.net/wp-content/uploads/2018/06/map-arrow-png-5.png';
+    var ctx = canvas.getContext('2d');
+    document.getElementById('question-img').addEventListener("click", getClickPosition, false);
+    function getClickPosition(e) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        ctx.clearRect(0, 0, canvas.width, canvas.width);
+        let size = document.getElementById('question-img')
+        xPosition = e.clientX / size.offsetWidth;
+        yPosition = e.clientY / size.offsetHeight;
+        ctx.drawImage(img, xPosition * canvas.width - 15, yPosition * canvas.height - 30, 30, 30);
+        console.log(`X position ${xPosition}  Y Position ${yPosition}`)
+        document.getElementById('button').setAttribute('class', 'button111 slide-in');
+        setTimeout(function () { document.getElementById('button').setAttribute('class', 'button111'); document.getElementById('button').style.transform = 'translatey(0%)'; }, 500)
+    }
+    function submit() {
+        let data = []
+        data.push(xPosition)
+        data.push(yPosition)
+        console.log(data)
+        sock.emit('question-picture', data)
+        document.getElementById('question-image').style.display = 'none'
+        document.getElementById('after-question').style.display = 'block'
+    }
+    let data = function (data1) {
+        ctx.drawImage(img, data1[0] * canvas.width - 15, data1[1] * canvas.height - 30, 30, 30);
+        console.log('this is data ' + data1)
+    }
+    sock.on('question-picture-recieve', data)
+</script>
+
+</html>
