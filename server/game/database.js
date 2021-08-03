@@ -4,7 +4,7 @@ let gamery = require('./game.js')
 let featuredId = ['5dab6fa21c9d440000526cee','5dab6fa21c9d440000526cee']
 
 
-var uri = "mongodb+srv://Kahoot-admin:AdminOfKahoot888@kahootquestions-zl6vb.mongodb.net/test?retryWrites=true&w=majority";
+var uri = ""
 /*
 MongoClient.connect(uri, { useUnifiedTopology: true }, { useNewUrlParser: true }, function(err, db) {
   if (err) throw err;
